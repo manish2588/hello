@@ -1,19 +1,16 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import home from "../assets/home.png";
-import game from "../assets/game_icon.png";
-import automobiles from "../assets/automobiles.png";
-import sports from "../assets/sports.png";
-import entertainment from "../assets/entertainment.png";
-import music from "../assets/music.png";
-import tech from "../assets/tech.png";
-import blogs from "../assets/blogs.png";
-import news from "../assets/news.png";
 import tom from "../assets/tom.png";
 import cameron from "../assets/cameron.png";
 import megan from "../assets/megan.png";
 import jack from "../assets/jack.png";
-
+import { SiYoutubeshorts } from "react-icons/si";
+import { TbTrendingUp } from "react-icons/tb";
+import { SiYoutubegaming } from "react-icons/si";
+import { GiTrophyCup } from "react-icons/gi";
+import { IoMdMusicalNote } from "react-icons/io";
+import { MdOutlineSubscriptions } from "react-icons/md";
+import { GoHome } from "react-icons/go";
 function Sidebar() {
   const open = useSelector((store) => store.app.open);
 
@@ -24,15 +21,14 @@ function Sidebar() {
       }`}
     >
       <div className="space-y-6 ml-6 mt-6">
-        <SidebarItem src={home} label="Home" isOpen={open} />
-        <SidebarItem src={game} label="Game" isOpen={open} />
-        <SidebarItem src={automobiles} label="Automobiles" isOpen={open} />
-        <SidebarItem src={sports} label="Sports" isOpen={open} />
-        <SidebarItem src={entertainment} label="Entertainment" isOpen={open} />
-        <SidebarItem src={music} label="Music" isOpen={open} />
-        <SidebarItem src={blogs} label="Blogs" isOpen={open} />
-        <SidebarItem src={news} label="News" isOpen={open} />
-        <SidebarItem src={tech} label="Technology" isOpen={open} />
+        <SidebarItem1 avatar={<GoHome size={30} />} label="Home" isOpen={open} />
+        <SidebarItem1 avatar={<SiYoutubeshorts size={30} />} label="Shorts" isOpen={open} />
+        <SidebarItem1 avatar={<MdOutlineSubscriptions size={30} />} label="Subscriptions" isOpen={open} />
+        {open && <p className="text-2xl font-semibold">Explore</p>}
+        <SidebarItem2 avatar={<SiYoutubegaming size={30} />} label="Gaming" isOpen={open} />
+        <SidebarItem2 avatar={<IoMdMusicalNote size={30} />} label="Music" isOpen={open} />
+        <SidebarItem2 avatar={<TbTrendingUp size={30} />} label="Trending" isOpen={open} />
+        <SidebarItem2 avatar={<GiTrophyCup size={30} />} label="Sport" isOpen={open} />
         {open && <p className="text-2xl font-semibold">Subscription</p>}
         <SidebarItem src={tom} label="BBK Vines" isOpen={open} isRounded />
         <SidebarItem src={megan} label="ICC" isOpen={open} isRounded />
@@ -45,14 +41,47 @@ function Sidebar() {
 
 function SidebarItem({ src, label, isOpen, isRounded = false }) {
   return (
-    <div className="flex items-center space-x-8">
-      <img
-        src={src}
-        alt={label}
-        className={`w-8 h-8 ${isRounded ? "rounded-full w-10 h-10" : ""}`}
-      />
-      {isOpen && <span className="text-lg font-medium">{label}</span>}
+    <div >
+      {isOpen && (
+        <div className="flex items-center space-x-8">
+          <img
+            src={src}
+            alt={label}
+            className={`w-8 h-8 ${isRounded ? "rounded-full w-10 h-10" : ""}`}
+          />
+          <span className="text-lg font-medium">{label}</span>
+        </div>
+      )}
     </div>
+  );
+}
+
+function SidebarItem1({ label, isOpen, avatar }) {
+  return (
+    <div
+      className={`flex items-center ${
+        isOpen ? "flex-row space-x-8" : "flex-col space-y-1"
+      }`}
+    >
+      <div>{avatar}</div>
+      <span className={isOpen ? "text-lg font-medium" : "text-xs text-center"}>
+        {label}
+      </span>
+    </div>
+  );
+}
+
+function SidebarItem2({label, isOpen,avatar }) {
+  return (
+    <div>
+      {
+        isOpen&& 
+        <div className="flex items-center space-x-8">
+          <div> {avatar}</div>
+           <span className="text-lg font-medium">{label}</span>
+        </div>
+      }
+   </div>
   );
 }
 
