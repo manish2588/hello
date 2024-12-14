@@ -24,7 +24,7 @@ function Sidebar() {
         <SidebarItem1 avatar={<GoHome size={30} />} label="Home" isOpen={open} />
         <SidebarItem1 avatar={<SiYoutubeshorts size={30} />} label="Shorts" isOpen={open} />
         <SidebarItem1 avatar={<MdOutlineSubscriptions size={30} />} label="Subscriptions" isOpen={open} />
-        {open && <p className="text-2xl font-semibold">Explore</p>}
+        {open && <p className="text-2xl font-semibold">Exploree</p>}
         <SidebarItem2 avatar={<SiYoutubegaming size={30} />} label="Gaming" isOpen={open} />
         <SidebarItem2 avatar={<IoMdMusicalNote size={30} />} label="Music" isOpen={open} />
         <SidebarItem2 avatar={<TbTrendingUp size={30} />} label="Trending" isOpen={open} />
