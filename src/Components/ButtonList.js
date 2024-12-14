@@ -25,7 +25,7 @@ function ButtonList() {
     "Crime",
     "Thriller",
     "Football",
-    "Web Development",
+    "Movie",
     "Comedy",
   ];
 
@@ -34,8 +34,8 @@ function ButtonList() {
   return (
     <div
       className={`flex flex-row ${
-        open ? "space-x-8" : "space-x-8"
-      }   px-4 py-2  mt-6`}
+        open ? "space-x-6" : "space-x-6"
+      }   px-2 py-2  mt-6`}
     >
       {buttonlist.map((button, index) => (
         <button
@@ -45,7 +45,7 @@ function ButtonList() {
           }}
           className={`${
             active === button ? "bg-slate-900 text-white" : "bg-gray-200"
-          } px-4 py-1 text-lg font-medium border rounded-lg`}
+          } px-2  text-lg font-medium border rounded-lg`}
         >
           {button}
         </button>
