@@ -42,8 +42,8 @@ function VideoContainer() {
   return (
 
     <div
-      className={`grid gap-3 ${
-        open ? "grid-cols-3" : "grid-cols-4"
+      className={` grid sm:grid-cols-1 ${
+        open ? "lg:grid-cols-3 gap-4 " : "lg:grid-cols-4 gap-4 "
       } transition-all duration-300`}
     >
       {video.map((video) => (

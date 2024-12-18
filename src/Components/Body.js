@@ -10,9 +10,9 @@ function Body() {
     <div className="flex pt-16">
       <Sidebar />
       <div
-        className={`transition-all duration-300 ${
-          open ? "ml-[15%] w-[85%]" : "ml-[5%] w-[95%]"
-        } p-4`}
+        className={`transition-all duration-300 box-border ${
+          open ? "lg:ml-[15%] w-[80%]" : "lg:ml-[5%] w-[90%]"
+        } sm:max-w-full p-2`}
       >
         <Outlet />
       </div>

@@ -7,7 +7,7 @@ const Feed = () => {
   return (
     <div className='flex flex-col'>
       {/* Fixed ButtonList moved 15% from the left */}
-      <div className={`fixed top-18 ${open?"left-[15%]":"left-[5%]"} right-0 z-30 bg-white px-4`}>
+      <div className={`fixed top-18 ${open?"lg:left-[15%] sm:left-0":"lg:left-[5%] sm:left-0"} right-0 z-30 bg-white px-4 box-border`}>
         <ButtonList />
       </div>
       {/* VideoContainer aligned with ButtonList */}

@@ -14,7 +14,9 @@ import {
 } from "../utils/appSlice";
 import { SEARCH_SUGGESTIONS_API } from "../constant/Youtube";
 import axios from "axios";
-import SpeechRecognition, { useSpeechRecognition } from "react-speech-recognition";
+import SpeechRecognition, {
+  useSpeechRecognition,
+} from "react-speech-recognition";
 
 function Navbar() {
   const [input, setInput] = useState("");
@@ -34,7 +36,6 @@ function Navbar() {
     if (transcript) {
       setInput(transcript);
       searchVideo();
-      
     }
   }, [transcript]);
 
@@ -100,62 +101,95 @@ function Navbar() {
 
   return (
     <>
-      <nav className="fixed top-0 left-0 right-0 h-24 flex p-6 bg-white z-50">
-        <div className="flex space-x-10 basis-1/3">
-          <RxHamburgerMenu size={40} onClick={toggleHandler} />
-          <div className="flex space-x-2">
+      <nav className="fixed top-0 left-0 right-0 h-24 flex items-center px-6 bg-white z-50 ">
+        {/* Small Screen Layout */}
+        <div className="flex justify-between items-center w-full lg:hidden">
+          {/* YouTube Logo */}{" "}
+          <div className="flex items-center space-x-2">
+            
             <FaYoutube size={40} color="red" />
             <span className="text-3xl font-semibold">Youtube</span>
           </div>
-        </div>
-        <div className="relative flex basis-1/3">
-          <input
-            onFocus={openSuggestion}
-            onChange={(e) => setInput(e.target.value)}
-            onKeyDown={handleKeyDown}
-            type="text"
-            value={input}
-            placeholder="Search"
-            className="border border-gray-200 rounded-l-full w-full px-4 py-2 text-2xl"
-          />
-          <CiSearch
-            className="px-2 py-1 cursor-pointer bg-gray-100 rounded-r-full w-20 border border-gray-200"
-            onClick={searchVideo}
-            size={50}
-          />
-          <FaMicrophone
-            className={`px-2 py-1 mt-1 cursor-pointer  rounded-r-full w-20  ${isMicOn ? 'text-red-500' : ''}`}
-            onClick={handleVoiceSearch}
-            size={40}
-          />
-          {suggestion && searchSuggestion.length !== 0 && (
-            <div className="absolute top-1 z-50 w-[82%] py-5 bg-white shadow-lg mt-12 rounded-lg border border-gray-200">
-              <ul>
-                {searchSuggestion.map((text, idx) => (
-                  <div
-                    key={idx}
-                    className="flex items-center px-4 hover:bg-gray-100"
-                    onClick={() => handleSuggestionClick(text)}
-                  >
-                    <CiSearch size="24px" />
-                    <li className="px-2 py-1 cursor-pointer text-lg font-semibold">
-                      {text}
-                    </li>
-                  </div>
-                ))}
-              </ul>
-            </div>
-          )}
-        </div>
-
-        <div className="flex space-x-8 basis-1/3 justify-end mr-8">
-          <img src={upload} alt="upload" className="cursor-pointer p-1" />
-          <img src={notify} alt="notification" className="cursor-pointer p-1" />
+          {/* Profile Icon */}
           <img
             src={pp}
             alt="profile"
-            className="rounded-full cursor-pointer p-1"
+            className="rounded-full cursor-pointer w-12 h-12"
           />
+        </div>
+
+        {/* Large Screen Layout */}
+        <div className="hidden lg:flex justify-between items-center w-full">
+          {/* Left Section */}
+          <div className="flex items-center space-x-10 basis-1/4">
+            <RxHamburgerMenu size={32} onClick={toggleHandler} />
+            <div className="flex items-center space-x-2">
+              <FaYoutube size={36} color="red" />
+              <span className="text-2xl font-semibold">Youtube</span>
+            </div>
+          </div>
+
+          {/* Middle Section */}
+          <div className="relative flex items-center basis-2/4">
+            <input
+              onFocus={openSuggestion}
+              onChange={(e) => setInput(e.target.value)}
+              onKeyDown={handleKeyDown}
+              type="text"
+              value={input}
+              placeholder="Search"
+              className="border border-gray-200 rounded-l-full w-full px-4 py-2 text-2xl h-10"
+            />
+            <CiSearch
+              className="px-2 py-1 cursor-pointer bg-gray-100 rounded-r-full w-20 border border-gray-200"
+              onClick={searchVideo}
+              size={40}
+            />
+            <FaMicrophone
+              className={`px-2 py-1 mt-1 cursor-pointer rounded-r-full w-20 ${
+                isMicOn ? "text-red-500" : ""
+              }`}
+              onClick={handleVoiceSearch}
+              size={36}
+            />
+            {suggestion && searchSuggestion.length !== 0 && (
+              <div className="absolute top-1 z-50 w-[82%] py-5 bg-white shadow-lg mt-12 rounded-lg border border-gray-200">
+                <ul>
+                  {searchSuggestion.map((text, idx) => (
+                    <div
+                      key={idx}
+                      className="flex items-center px-4 hover:bg-gray-100"
+                      onClick={() => handleSuggestionClick(text)}
+                    >
+                      <CiSearch size="24px" />
+                      <li className="px-2 py-1 cursor-pointer text-lg font-semibold">
+                        {text}
+                      </li>
+                    </div>
+                  ))}
+                </ul>
+              </div>
+            )}
+          </div>
+
+          {/* Right Section */}
+          <div className="flex items-center space-x-8 basis-1/4 justify-end mr-8">
+            <img
+              src={upload}
+              alt="upload"
+              className="cursor-pointer p-1 w-10 h-10"
+            />
+            <img
+              src={notify}
+              alt="notification"
+              className="cursor-pointer p-1 w-10 h-10"
+            />
+            <img
+              src={pp}
+              alt="profile"
+              className="rounded-full cursor-pointer p-1 w-10 h-10"
+            />
+          </div>
         </div>
       </nav>
     </>

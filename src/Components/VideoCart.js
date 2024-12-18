@@ -20,22 +20,27 @@ function VideoCart({ video }) {
   }, []);
 
   return (
-    <div className="flex flex-col space-y-4 cursor-pointer mt-4 mb-6">
+    <div className="flex flex-col space-y-4 cursor-pointer mt-4 mb-6 w-full">
+      {/* Image with full width on small screens */}
       <img
-        src={video.snippet.thumbnails.high.url} // Replace with the actual video thumbnail URL
-        alt={video.title} // Replace with the actual video title for alt text
-        className="w-[25vw] h-[15vw] object-cover rounded-lg"
+        src={video.snippet.thumbnails.high.url}
+        alt={video.title}
+        className="w-full h-auto object-cover rounded-lg" // Ensure it stretches on small screens
       />
 
-      <div className="flex space-x-4 items-start w-[25vw]">
-        <div>
-          <img src={icon} alt="icon" className="w-[45px] h-[45px] rounded-full object-cover"/>
+      {/* Container for icon and title with flexible layout */}
+      <div className="flex flex-row space-x-4 items-start w-full">
+        {/* Icon */}
+        <div className="mb-2 sm:mb-0">
+          <img src={icon} alt="icon" className="w-10 h-10 rounded-full object-cover"/>
         </div>
-        <div className="flex flex-col justify-between h-[75px]">
-          <span className="text-lg font-bold">
+        
+        {/* Title and Channel */}
+        <div className="flex flex-col justify-between sm:h-[80px]">
+          <span className="text-medium font-medium">
             {video.snippet.title}
           </span>
-          <span className="text-gray-500 text-lg">{video.snippet.channelTitle}</span>
+          <span className="text-gray-500 text-medium font-medium">{video.snippet.channelTitle}</span>
         </div>
       </div>
     </div>

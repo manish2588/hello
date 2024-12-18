@@ -6,6 +6,7 @@ import "./App.css";
 import { createBrowserRouter,RouterProvider } from "react-router-dom";
 import Body from "./Components/Body";
 import Watch from "./Components/Watch";
+import Category from "./Components/Category";
 function App() {
   const approuter=createBrowserRouter([
     {
@@ -14,11 +15,16 @@ function App() {
       children:[
         {
           path:"/",
-          element:<Feed/>
+          element:<Feed/>,
         },
         {
           path:"/watch",
           element:<Watch/>
+        }
+        ,
+        {
+          path:"/:category",
+          element:<Category/>
         }
       ]
     }
