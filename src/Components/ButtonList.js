@@ -50,7 +50,7 @@ function ButtonList() {
   return (
     <div className="mt-6 px-4 relative mb-4">
       {/* Button List Container */}
-      <div className={`flex items-center  relative ${open ? "space-x-8" : "space-x-8"}`}>
+      <div className={`flex items-center relative ${open ? "space-x-8" : "space-x-8"}`}>
         {/* Left Arrow for Large Screens */}
         {buttonlist.length > 10 && (
           <button
@@ -80,6 +80,7 @@ function ButtonList() {
           className={`flex gap-2 overflow-x-auto lg:overflow-hidden lg:flex-nowrap w-full scrollbar-hide`}
           style={{
             WebkitOverflowScrolling: "touch",
+            minWidth: "100%",  // Make sure container is large enough
           }}
         >
           {buttonlist.map((button, index) => (
@@ -89,7 +90,7 @@ function ButtonList() {
               className={`${
                 active === button ? "bg-slate-900 text-white" : "bg-gray-200"
               } flex-shrink-0 px-4 py-0.5 text-medium font-medium border rounded-lg`}
-              style={{ minWidth:"60px" }}
+              style={{ minWidth: "80px" }} // Ensure button width is large enough
             >
               {button}
             </button>
@@ -99,7 +100,7 @@ function ButtonList() {
         {/* Right Arrow for Large Screens */}
         {buttonlist.length > 10 && (
           <button
-            className="hidden lg:flex absolute right-[-20px] top-1/2 transform -translate-y-1/2 z-10 p-2 bg-white  rounded-full shadow-md hover:scale-110"
+            className="hidden lg:flex absolute right-[-20px] top-1/2 transform -translate-y-1/2 z-10 p-2 bg-white rounded-full shadow-md hover:scale-110"
             onClick={() => handleScroll("right")}
           >
             <svg

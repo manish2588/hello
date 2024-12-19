@@ -14,25 +14,23 @@ function Watch() {
   const [channelName, setChannelName] = useState("");
   const [icon, setIcon] = useState("");
   const [subscriberCount, setSubscriberCount] = useState("");
-  const [color, setColor] = useState("black");
   const [userAction, setUserAction] = useState(null); // 'like' or 'dislike'
 
   const handleLike = () => {
-    if (userAction === 'like') {
+    if (userAction === "like") {
       setUserAction(null); // Undo like
     } else {
-      setUserAction('like'); // Like the video
+      setUserAction("like"); // Like the video
     }
   };
 
   const handleDislike = () => {
-    if (userAction === 'dislike') {
+    if (userAction === "dislike") {
       setUserAction(null); // Undo dislike
     } else {
-      setUserAction('dislike'); // Dislike the video
+      setUserAction("dislike"); // Dislike the video
     }
   };
-
 
   const formatSubscriberCount = (count) => {
     if (count >= 1000000) {
@@ -75,42 +73,47 @@ function Watch() {
   }, []);
 
   return (
-    <div className="mt-4">
+    <div className="mt-4 w-full">
       <div>
         <iframe
           width="1000"
-          height="600"
+          height="500"
           src={`https://www.youtube.com/embed/${videoId}?&autoplay=1`}
           title="YouTube video player"
           frameBorder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
           referrerPolicy="strict-origin-when-cross-origin"
           allowFullScreen
-          className="border rounded-lg"
+          className="border rounded-lg w-full lg:w-4/5"
         ></iframe>
       </div>
-      <div>
-        <p className="font-bold mt-2 text-2xl w-[1000px]">{desp}</p>
+      <div className="w-4/5">
+        <p className="  sm: font-semibold mt-2 text-lg lg:font-bold mt-2 text-2xl">
+          {desp}
+        </p>
       </div>
-      <div className="mt-4 flex w-[1000px]">
-        <div className="flex space-x-4">
+      <div className="mt-4 flex flex-wrap items-center w-full sm:w-4/5 space-y-4 sm:space-y-0 sm:flex-nowrap">
+        {/* Channel Information */}
+        <div className="flex space-x-4 items-center">
           <div>
-            <Avatar size={50} round={true} src={icon} />
+            <Avatar size={40} round={true} src={icon} />
           </div>
-          <div className="flex flex-col">
-            <span className="font-semibold text-xl">{channelName}</span>
-            <span className="text-gray-500">{subscriberCount}subscribers</span>
+          <div className="flex flex-col text-xs sm:text-sm">
+            <span className="font-semibold text-base sm:text-xl">
+              {channelName}
+            </span>
+            <span className="text-gray-500">{subscriberCount} subscribers</span>
           </div>
-        </div>
-        <div className="ml-8">
-          <button className="bg-black px-4 py-2 rounded-full text-white font-medium text-lg">
+          <button className="bg-black px-2 py-1 sm:px-4 sm:py-2 rounded-full text-white font-medium text-xs sm:text-lg">
             Subscribe
           </button>
         </div>
-        <div className="flex space-x-6 ml-auto">
-          <div className="flex space-x-6 bg-slate-100 cursor-pointer rounded-full py-2 px-4">
+
+        {/* Action Buttons */}
+        <div className="flex space-x-4 justify-end items-center flex-1 text-xs sm:text-sm">
+          <div className="flex space-x-2 bg-slate-100 cursor-pointer rounded-full py-1 px-2 sm:py-2 sm:px-4">
             <AiOutlineLike
-              size={30}
+              size={20}
               style={{
                 color: userAction === "like" ? "blue" : "black",
                 cursor: "pointer",
@@ -118,7 +121,7 @@ function Watch() {
               onClick={handleLike}
             />
             <AiOutlineDislike
-              size={30}
+              size={20}
               style={{
                 color: userAction === "dislike" ? "blue" : "black",
                 cursor: "pointer",
@@ -126,13 +129,13 @@ function Watch() {
               onClick={handleDislike}
             />
           </div>
-          <div className="flex space-x-2 bg-slate-100 cursor-pointer rounded-full py-3 px-4">
-            <PiShareFat size={25} />
-            <span className="font-medium text-lg">Share</span>
+          <div className="flex space-x-2 bg-slate-100 cursor-pointer rounded-full py-1 px-2 sm:py-2 sm:px-4">
+            <PiShareFat size={20} />
+            <span className="font-medium text-xs sm:text-lg">Share</span>
           </div>
-          <div className="flex space-x-2 bg-slate-100 cursor-pointer rounded-full py-3 px-4">
-            <GoDownload size={25} />
-            <span className="font-medium text-lg">Download</span>
+          <div className="flex space-x-2 bg-slate-100 cursor-pointer rounded-full py-1 px-2 sm:py-2 sm:px-4">
+            <GoDownload size={20} />
+            <span className="font-medium text-xs sm:text-lg">Download</span>
           </div>
         </div>
       </div>

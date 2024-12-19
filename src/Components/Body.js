@@ -11,8 +11,10 @@ function Body() {
       <Sidebar />
       <div
         className={`transition-all duration-300 box-border ${
-          open ? "lg:ml-[15%] w-[80%]" : "lg:ml-[5%] w-[90%]"
-        } sm:max-w-full p-2`}
+          open
+            ? "lg:ml-[15%] w-[80%] sm:w-full"
+            : "lg:ml-[5%] w-[90%] sm:w-full"
+        } p-2`}
       >
         <Outlet />
       </div>

@@ -1,25 +1,24 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import axios from "axios";
-import { YOUTUBE_VIDEO_API ,API_KEY} from "../constant/Youtube";
+import { YOUTUBE_VIDEO_API, API_KEY } from "../constant/Youtube";
 import VideoCart from "./VideoCart";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { setHomeVideo } from "../utils/appSlice";
+
 function VideoContainer() {
   const { video, category } = useSelector((store) => store.app);
-  console.log(category);
   const dispatch = useDispatch();
+
   const fetchYoutubeVideo = async () => {
     try {
-      console.log("Request URL:", YOUTUBE_VIDEO_API);
       const res = await axios.get(`${YOUTUBE_VIDEO_API}`);
-      console.log("Response from YouTube API:", res);
-      dispatch(setHomeVideo(res?.data?.items))
+      dispatch(setHomeVideo(res?.data?.items));
     } catch (error) {
       console.error("Error fetching YouTube:", error);
-      console.error("Error details:", error.response); // Logs detailed error response
     }
   };
+
   const fetchVideoByCategory = async (category) => {
     try {
       const res = await axios.get(
@@ -30,6 +29,7 @@ function VideoContainer() {
       console.log(error);
     }
   };
+
   useEffect(() => {
     if (category === "All") {
       fetchYoutubeVideo();
@@ -37,14 +37,17 @@ function VideoContainer() {
       fetchVideoByCategory(category);
     }
   }, [category]);
+
   const open = useSelector((store) => store.app.open);
 
   return (
-
     <div
-      className={` grid sm:grid-cols-1 ${
-        open ? "lg:grid-cols-3 gap-4 " : "lg:grid-cols-4 gap-4 "
+      className={`w-full grid  ${
+        open
+          ? "lg:grid-cols-3 gap-4 sm:grid-cols-1"
+          : "lg:grid-cols-4 gap-4 sm:grid-cols-1"
       } transition-all duration-300`}
+      style={{ padding: "0", margin: "0" }}
     >
       {video.map((video) => (
         <Link
@@ -53,7 +56,9 @@ function VideoContainer() {
           }`}
           key={typeof video.id === "object" ? video.id.videoId : video.id}
         >
-          <VideoCart video={video} />
+          <div className="w-full">
+            <VideoCart video={video} />
+          </div>
         </Link>
       ))}
     </div>

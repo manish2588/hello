@@ -103,7 +103,7 @@ function Navbar() {
     <>
       <nav className="fixed top-0 left-0 right-0 h-24 flex items-center px-6 bg-white z-50 ">
         {/* Small Screen Layout */}
-        <div className="flex justify-between items-center w-full lg:hidden">
+        <div className="flex justify-between  w-full lg:hidden">
           {/* YouTube Logo */}{" "}
           <div className="flex items-center space-x-2">
             

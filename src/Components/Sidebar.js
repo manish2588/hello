@@ -109,18 +109,20 @@ function SidebarItem1({ label, isOpen, avatar }) {
 function SidebarItem2({ label, isOpen, avatar }) {
   const dispatch = useDispatch();
 
-  const handleClick = (label) => {
-    dispatch(setCategory(label));
-  };
   return (
     <div>
       {isOpen && (
-        <div
-          className="flex items-center space-x-8"
-          onClick={() => handleClick({ label })}
-        >
+        <div className="flex items-center space-x-8">
           <div> {avatar}</div>
-          <span className="text-medium font-normal">{label}</span>
+
+          <NavLink
+            to={`/${label}`}
+            className={({ isActive }) =>
+              isActive ? "text-medium font-bold" : "text-medium font-normal"
+            }
+          >
+            <span>{label}</span>
+          </NavLink>
         </div>
       )}
     </div>
